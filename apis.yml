@@ -1,0 +1,39 @@
+aid: spacelift
+name: Spacelift
+description: >-
+  Spacelift is an infrastructure-as-code management platform supporting
+  Terraform, OpenTofu, Pulumi, and CloudFormation with cost controls and policy
+  enforcement.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - FinOps
+  - Infrastructure as Code
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/apis.yml
+created: '2026-03-27'
+modified: '2026-03-27'
+specificationVersion: '0.19'
+apis:
+  - aid: spacelift:spacelift
+    name: Spacelift
+    description: >-
+      Spacelift is an infrastructure-as-code management platform supporting
+      Terraform, OpenTofu, Pulumi, and CloudFormation with cost controls and
+      policy enforcement.
+    humanURL: https://spacelift.io/
+    tags:
+      - FinOps
+    properties:
+      - type: Documentation
+        url: https://docs.spacelift.io/
+      - type: Getting Started
+        url: https://docs.spacelift.io/
+common:
+  - type: Website
+    url: https://spacelift.io/
+  - type: Documentation
+    url: https://docs.spacelift.io/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
