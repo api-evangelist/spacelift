@@ -1,0 +1,41 @@
+{
+  "summary": "Spacelift Stack Example",
+  "description": "Example Spacelift stack object returned from the GraphQL API stacks query",
+  "graphqlQuery": {
+    "query": "{ stacks { id name description createdAt administrative labels repository branch state space driftDetection autoApply } }"
+  },
+  "graphqlResponse": {
+    "data": {
+      "stacks": [
+        {
+          "id": "production-networking",
+          "name": "Production Networking",
+          "description": "Manages VPC, subnets, and security groups for the production environment",
+          "createdAt": "2025-01-15T10:30:00Z",
+          "administrative": false,
+          "labels": ["production", "networking", "terraform"],
+          "repository": "acme/infrastructure",
+          "branch": "main",
+          "state": "FINISHED",
+          "space": "root",
+          "driftDetection": true,
+          "autoApply": false
+        },
+        {
+          "id": "staging-compute",
+          "name": "Staging Compute",
+          "description": "ECS clusters and task definitions for staging",
+          "createdAt": "2025-02-20T14:00:00Z",
+          "administrative": false,
+          "labels": ["staging", "compute"],
+          "repository": "acme/infrastructure",
+          "branch": "develop",
+          "state": "PLANNING",
+          "space": "root",
+          "driftDetection": false,
+          "autoApply": true
+        }
+      ]
+    }
+  }
+}

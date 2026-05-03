@@ -1,0 +1,168 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/json-schema/spacelift-stack-schema.json",
+  "title": "Spacelift Stack",
+  "description": "Schema for a Spacelift infrastructure stack — the central entity connecting a source code repository to an IaC tool deployment target",
+  "type": "object",
+  "properties": {
+    "id": {
+      "description": "Unique identifier for the stack",
+      "type": "string",
+      "example": "my-terraform-stack"
+    },
+    "name": {
+      "description": "Human-readable display name for the stack",
+      "type": "string",
+      "example": "My Terraform Stack"
+    },
+    "description": {
+      "description": "Optional description of the stack's purpose",
+      "type": "string"
+    },
+    "createdAt": {
+      "description": "ISO 8601 timestamp when the stack was created",
+      "type": "string",
+      "format": "date-time"
+    },
+    "administrative": {
+      "description": "Whether the stack has administrative privileges over the Spacelift account",
+      "type": "boolean"
+    },
+    "labels": {
+      "description": "Labels attached to the stack for organization and policy targeting",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "example": ["production", "networking"]
+    },
+    "repository": {
+      "description": "Source control repository connected to this stack",
+      "type": "string",
+      "example": "org/infrastructure-repo"
+    },
+    "branch": {
+      "description": "Git branch tracked by this stack",
+      "type": "string",
+      "example": "main"
+    },
+    "projectRoot": {
+      "description": "Root directory within the repository for this stack's IaC code",
+      "type": "string"
+    },
+    "provider": {
+      "description": "VCS provider type (GITHUB, GITLAB, BITBUCKET, etc.)",
+      "type": "string",
+      "enum": ["GITHUB", "GITLAB", "BITBUCKET", "GITHUB_ENTERPRISE", "AZURE_DEVOPS"]
+    },
+    "vendorConfig": {
+      "description": "IaC vendor-specific configuration",
+      "$ref": "#/definitions/VendorConfig"
+    },
+    "state": {
+      "description": "Current state of the stack",
+      "type": "string",
+      "enum": ["CONFIRMED", "DISCARDED", "FAILED", "FINISHED", "INITIALIZING", "NONE", "PERFORMING", "PLANNING", "PREPARING", "QUEUED", "READY", "RESTARTING", "STOPPED", "UNCONFIRMED"]
+    },
+    "space": {
+      "description": "The Spacelift space this stack belongs to",
+      "type": "string"
+    },
+    "workerPool": {
+      "description": "Worker pool used for stack runs (null = public workers)",
+      "type": "string",
+      "nullable": true
+    },
+    "driftDetection": {
+      "description": "Whether drift detection is enabled for this stack",
+      "type": "boolean"
+    },
+    "autoApply": {
+      "description": "Whether approved plans are automatically applied",
+      "type": "boolean"
+    },
+    "lockedAt": {
+      "description": "Timestamp when the stack was locked (null if unlocked)",
+      "type": "string",
+      "format": "date-time",
+      "nullable": true
+    },
+    "lockedBy": {
+      "description": "Login of the user who locked the stack",
+      "type": "string",
+      "nullable": true
+    }
+  },
+  "definitions": {
+    "VendorConfig": {
+      "title": "Vendor Config",
+      "description": "IaC tool-specific configuration for a stack",
+      "type": "object",
+      "properties": {
+        "terraform": {
+          "$ref": "#/definitions/TerraformConfig"
+        },
+        "pulumi": {
+          "$ref": "#/definitions/PulumiConfig"
+        },
+        "cloudFormation": {
+          "$ref": "#/definitions/CloudFormationConfig"
+        }
+      }
+    },
+    "TerraformConfig": {
+      "title": "Terraform Config",
+      "description": "Terraform-specific stack configuration",
+      "type": "object",
+      "properties": {
+        "version": {
+          "description": "Terraform version to use",
+          "type": "string",
+          "example": "1.6.0"
+        },
+        "workspace": {
+          "description": "Terraform workspace name",
+          "type": "string"
+        },
+        "useSmartSanitization": {
+          "description": "Whether to use smart sanitization for plan output",
+          "type": "boolean"
+        }
+      }
+    },
+    "PulumiConfig": {
+      "title": "Pulumi Config",
+      "description": "Pulumi-specific stack configuration",
+      "type": "object",
+      "properties": {
+        "loginURL": {
+          "description": "Pulumi backend login URL",
+          "type": "string"
+        },
+        "stackName": {
+          "description": "Pulumi stack name",
+          "type": "string"
+        }
+      }
+    },
+    "CloudFormationConfig": {
+      "title": "Cloud Formation Config",
+      "description": "AWS CloudFormation-specific stack configuration",
+      "type": "object",
+      "properties": {
+        "entryTemplateFile": {
+          "description": "Path to the CloudFormation entry template file",
+          "type": "string"
+        },
+        "region": {
+          "description": "AWS region for CloudFormation deployment",
+          "type": "string"
+        },
+        "stackName": {
+          "description": "CloudFormation stack name",
+          "type": "string"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,121 @@
+vocabulary:
+  title: Spacelift Vocabulary
+  description: >-
+    Domain vocabulary for Spacelift — an infrastructure-as-code orchestration platform
+    supporting Terraform, OpenTofu, Pulumi, CloudFormation, Kubernetes, and Ansible.
+  version: "1.0.0"
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+terms:
+  - term: Stack
+    definition: >-
+      The central Spacelift entity that connects a source code repository to an IaC tool
+      and deployment target. Stacks manage infrastructure state, run history, policies,
+      and deployment configuration.
+    tags:
+      - Core Concept
+
+  - term: Run
+    definition: >-
+      An execution of a Spacelift stack that performs planning, applying, or destroying
+      infrastructure. Runs transition through states such as PLANNING, UNCONFIRMED,
+      CONFIRMED, PERFORMING, and FINISHED.
+    tags:
+      - Core Concept
+      - Execution
+
+  - term: Policy
+    definition: >-
+      A Rego (OPA) code block that enforces governance rules at specific decision points
+      in Spacelift. Policy types include login, access, plan, task, git push, trigger,
+      notification, and initialization policies.
+    tags:
+      - Governance
+      - Policy as Code
+
+  - term: Context
+    definition: >-
+      A named collection of environment variables, mounted files, or hooks that can be
+      attached to stacks. Contexts allow sharing configuration across multiple stacks
+      without duplication.
+    tags:
+      - Configuration
+
+  - term: Worker Pool
+    definition: >-
+      A group of compute workers that execute Spacelift runs. Spacelift offers public
+      (managed) worker pools and private (self-hosted) worker pools for air-gapped or
+      compliance-driven environments.
+    tags:
+      - Infrastructure
+      - Compute
+
+  - term: Blueprint
+    definition: >-
+      A self-service template in Spacelift that allows platform teams to define
+      parameterized infrastructure patterns that developers can deploy without deep
+      IaC knowledge (Golden Paths).
+    tags:
+      - Self-Service
+      - Platform Engineering
+
+  - term: Drift Detection
+    definition: >-
+      A Spacelift feature that periodically checks whether the actual infrastructure
+      state matches the desired state defined in the IaC code, and alerts or remediates
+      when deviations (drift) are found.
+    tags:
+      - Compliance
+      - Monitoring
+
+  - term: Space
+    definition: >-
+      A Spacelift organizational unit used for multi-tenancy — grouping stacks, policies,
+      contexts, and modules with shared access controls. Spaces can be hierarchical.
+    tags:
+      - Multi-tenancy
+      - Organization
+
+  - term: Module
+    definition: >-
+      A reusable IaC module managed in Spacelift's private module registry, supporting
+      versioning and sharing across teams. Equivalent to Terraform registry modules
+      but hosted within the Spacelift account.
+    tags:
+      - Reuse
+      - Modules
+
+  - term: API Key
+    definition: >-
+      A Spacelift credential used to authenticate API access. API keys consist of an
+      ID and secret that are exchanged for a JWT bearer token via the apiKeyUser
+      GraphQL mutation.
+    tags:
+      - Authentication
+      - Security
+
+  - term: GraphQL
+    definition: >-
+      The query language used by Spacelift's API. The GraphQL endpoint is located at
+      https://{account}.app.spacelift.io/graphql and supports queries for reading data
+      and mutations for creating or modifying resources.
+    tags:
+      - API
+
+  - term: OPA (Open Policy Agent)
+    definition: >-
+      The open-source policy engine used by Spacelift to evaluate Rego policies at
+      decision points throughout the IaC deployment lifecycle.
+    tags:
+      - Policy as Code
+      - Open Source
+
+  - term: Auto Apply
+    definition: >-
+      A stack setting that causes Spacelift to automatically apply an approved plan
+      without requiring manual confirmation. Often used in lower environments where
+      speed is prioritized over human review.
+    tags:
+      - Configuration
+      - Automation

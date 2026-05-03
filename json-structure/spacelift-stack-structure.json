@@ -1,0 +1,53 @@
+{
+  "title": "Spacelift Stack Structure",
+  "description": "JSON structure documentation for a Spacelift infrastructure stack object",
+  "type": "object",
+  "fields": [
+    {"name": "id", "type": "string", "required": false, "description": "Unique stack identifier"},
+    {"name": "name", "type": "string", "required": false, "description": "Human-readable stack name"},
+    {"name": "description", "type": "string", "required": false, "description": "Optional stack description"},
+    {"name": "createdAt", "type": "string", "format": "date-time", "required": false, "description": "Creation timestamp"},
+    {"name": "administrative", "type": "boolean", "required": false, "description": "Whether stack has admin privileges"},
+    {"name": "labels", "type": "array", "items": {"type": "string"}, "required": false, "description": "Labels for organization and policy targeting"},
+    {"name": "repository", "type": "string", "required": false, "description": "Source control repository (org/repo)"},
+    {"name": "branch", "type": "string", "required": false, "description": "Git branch tracked by this stack"},
+    {"name": "projectRoot", "type": "string", "required": false, "description": "Root directory for IaC code within the repository"},
+    {"name": "provider", "type": "string", "required": false, "description": "VCS provider type (GITHUB, GITLAB, BITBUCKET, etc.)"},
+    {
+      "name": "vendorConfig",
+      "type": "object",
+      "required": false,
+      "description": "IaC tool-specific configuration",
+      "fields": [
+        {
+          "name": "terraform",
+          "type": "object",
+          "required": false,
+          "description": "Terraform-specific configuration",
+          "fields": [
+            {"name": "version", "type": "string", "description": "Terraform version"},
+            {"name": "workspace", "type": "string", "description": "Terraform workspace name"},
+            {"name": "useSmartSanitization", "type": "boolean", "description": "Smart sanitization flag"}
+          ]
+        },
+        {
+          "name": "pulumi",
+          "type": "object",
+          "required": false,
+          "description": "Pulumi-specific configuration",
+          "fields": [
+            {"name": "loginURL", "type": "string", "description": "Pulumi backend URL"},
+            {"name": "stackName", "type": "string", "description": "Pulumi stack name"}
+          ]
+        }
+      ]
+    },
+    {"name": "state", "type": "string", "required": false, "description": "Current stack state (CONFIRMED, FAILED, FINISHED, PLANNING, etc.)"},
+    {"name": "space", "type": "string", "required": false, "description": "Spacelift space this stack belongs to"},
+    {"name": "workerPool", "type": "string", "required": false, "nullable": true, "description": "Worker pool ID (null = public workers)"},
+    {"name": "driftDetection", "type": "boolean", "required": false, "description": "Whether drift detection is enabled"},
+    {"name": "autoApply", "type": "boolean", "required": false, "description": "Whether approved plans auto-apply"},
+    {"name": "lockedAt", "type": "string", "format": "date-time", "required": false, "nullable": true, "description": "Timestamp when stack was locked"},
+    {"name": "lockedBy", "type": "string", "required": false, "nullable": true, "description": "User who locked the stack"}
+  ]
+}
