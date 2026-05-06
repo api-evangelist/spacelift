@@ -1,162 +1,244 @@
-naftiko: "1.0.0-alpha1"
-
+naftiko: 1.0.0-alpha2
 info:
   label: Spacelift Infrastructure Orchestration
-  description: >-
-    Workflow capability for orchestrating infrastructure deployments through Spacelift.
-    Enables platform engineers and DevOps teams to manage IaC stacks, trigger deployments,
-    enforce governance policies, and monitor worker pool health programmatically.
+  description: Workflow capability for orchestrating infrastructure deployments through Spacelift. Enables platform engineers
+    and DevOps teams to manage IaC stacks, trigger deployments, enforce governance policies, and monitor worker pool health
+    programmatically.
   tags:
-    - Infrastructure as Code
-    - DevOps
-    - Platform Engineering
-    - Terraform
-    - GitOps
-  created: "2026-05-02"
-  modified: "2026-05-02"
-
+  - Infrastructure as Code
+  - DevOps
+  - Platform Engineering
+  - Terraform
+  - GitOps
+  created: '2026-05-02'
+  modified: '2026-05-06'
 binds:
-  - namespace: env
-    keys:
-      SPACELIFT_API_KEY_ID: SPACELIFT_API_KEY_ID
-      SPACELIFT_API_KEY_SECRET: SPACELIFT_API_KEY_SECRET
-      SPACELIFT_ACCOUNT: SPACELIFT_ACCOUNT
-
+- namespace: env
+  keys:
+    SPACELIFT_API_KEY_ID: SPACELIFT_API_KEY_ID
+    SPACELIFT_API_KEY_SECRET: SPACELIFT_API_KEY_SECRET
+    SPACELIFT_ACCOUNT: SPACELIFT_ACCOUNT
 capability:
   consumes:
-    - import: spacelift
-      location: ./shared/spacelift.yaml
-
+  - type: http
+    namespace: spacelift
+    baseUri: https://{{env.SPACELIFT_ACCOUNT}}.app.spacelift.io
+    description: Spacelift GraphQL API
+    authentication:
+      type: bearer
+      token: '{{SPACELIFT_JWT}}'
+    resources:
+    - name: graphql
+      path: /graphql
+      description: Spacelift GraphQL endpoint — POST queries and mutations
+      operations:
+      - name: list-stacks
+        method: POST
+        description: Query all stacks in the account with their state and configuration
+        body:
+          type: json
+          data:
+            query: '{ stacks { id name description createdAt labels repository branch state space driftDetection autoApply
+              } }'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.data.stacks
+      - name: create-stack
+        method: POST
+        description: Create a new infrastructure stack
+        body:
+          type: json
+          data:
+            query: 'mutation($input: StackInput!) { stackCreate(input: $input) { id name } }'
+            variables:
+              input: '{{tools.input}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.data.stackCreate
+      - name: create-run
+        method: POST
+        description: Trigger a new run on an existing stack
+        body:
+          type: json
+          data:
+            query: 'mutation($stack: ID!, $message: String) { runCreate(stack: $stack, message: $message) { id state } }'
+            variables:
+              stack: '{{tools.stack}}'
+              message: '{{tools.message}}'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.data.runCreate
+      - name: list-policies
+        method: POST
+        description: Query all policies defined in the account
+        body:
+          type: json
+          data:
+            query: '{ policies { id name type body labels } }'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.data.policies
+      - name: list-contexts
+        method: POST
+        description: Query all contexts (shared environment variables and files)
+        body:
+          type: json
+          data:
+            query: '{ contexts { id name description labels } }'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.data.contexts
+      - name: list-worker-pools
+        method: POST
+        description: Query all worker pools in the account
+        body:
+          type: json
+          data:
+            query: '{ workerPools { id name description labels workers { busy } } }'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.data.workerPools
   exposes:
-    - type: rest
-      port: 8080
-      namespace: spacelift-orchestration-api
-      description: Unified REST API for infrastructure orchestration via Spacelift.
-      resources:
-        - path: /v1/stacks
-          name: stacks
-          description: Infrastructure stacks managed by Spacelift
-          operations:
-            - method: GET
-              name: list-stacks
-              description: List all infrastructure stacks with state and configuration
-              call: "spacelift.list-stacks"
-              outputParameters:
-                - type: object
-                  mapping: "$.data.stacks"
-            - method: POST
-              name: create-stack
-              description: Create a new infrastructure stack
-              call: "spacelift.create-stack"
-              with:
-                input: "rest.body"
-              outputParameters:
-                - type: object
-                  mapping: "$.data.stackCreate"
-        - path: /v1/runs
-          name: runs
-          description: Infrastructure deployment runs
-          operations:
-            - method: POST
-              name: create-run
-              description: Trigger a new deployment run on a stack
-              call: "spacelift.create-run"
-              with:
-                stack: "rest.stack"
-                message: "rest.message"
-              outputParameters:
-                - type: object
-                  mapping: "$.data.runCreate"
-        - path: /v1/policies
-          name: policies
-          description: Governance policies (OPA/Rego)
-          operations:
-            - method: GET
-              name: list-policies
-              description: List all governance policies in the account
-              call: "spacelift.list-policies"
-              outputParameters:
-                - type: object
-                  mapping: "$.data.policies"
-        - path: /v1/contexts
-          name: contexts
-          description: Shared environment variable contexts
-          operations:
-            - method: GET
-              name: list-contexts
-              description: List all shared contexts available for stack attachment
-              call: "spacelift.list-contexts"
-              outputParameters:
-                - type: object
-                  mapping: "$.data.contexts"
-        - path: /v1/worker-pools
-          name: worker-pools
-          description: Worker pools for running infrastructure jobs
-          operations:
-            - method: GET
-              name: list-worker-pools
-              description: List all worker pools and their current worker status
-              call: "spacelift.list-worker-pools"
-              outputParameters:
-                - type: object
-                  mapping: "$.data.workerPools"
-
-    - type: mcp
-      port: 9090
-      namespace: spacelift-orchestration-mcp
-      transport: http
-      description: MCP server for AI-assisted infrastructure orchestration via Spacelift.
-      tools:
-        - name: list-stacks
-          description: List all Spacelift infrastructure stacks with their current state, repository, and deployment configuration
-          hints:
-            readOnly: true
-          call: "spacelift.list-stacks"
-          outputParameters:
-            - type: object
-              mapping: "$.data.stacks"
-        - name: create-stack
-          description: Create a new infrastructure stack in Spacelift connected to a source repository
-          hints:
-            readOnly: false
-          call: "spacelift.create-stack"
-          with:
-            input: "tools.input"
-          outputParameters:
-            - type: object
-              mapping: "$.data.stackCreate"
-        - name: trigger-run
-          description: Trigger a new infrastructure deployment run on a Spacelift stack
-          hints:
-            readOnly: false
-          call: "spacelift.create-run"
-          with:
-            stack: "tools.stack"
-            message: "tools.message"
-          outputParameters:
-            - type: object
-              mapping: "$.data.runCreate"
-        - name: list-policies
-          description: List all governance policies (OPA/Rego) enforcing infrastructure deployment rules
-          hints:
-            readOnly: true
-          call: "spacelift.list-policies"
-          outputParameters:
-            - type: object
-              mapping: "$.data.policies"
-        - name: list-contexts
-          description: List all shared contexts containing environment variables and files for stacks
-          hints:
-            readOnly: true
-          call: "spacelift.list-contexts"
-          outputParameters:
-            - type: object
-              mapping: "$.data.contexts"
-        - name: list-worker-pools
-          description: List all worker pools and their worker health status
-          hints:
-            readOnly: true
-          call: "spacelift.list-worker-pools"
-          outputParameters:
-            - type: object
-              mapping: "$.data.workerPools"
+  - type: rest
+    port: 8080
+    namespace: spacelift-orchestration-api
+    description: Unified REST API for infrastructure orchestration via Spacelift.
+    resources:
+    - path: /v1/stacks
+      name: stacks
+      description: Infrastructure stacks managed by Spacelift
+      operations:
+      - method: GET
+        name: list-stacks
+        description: List all infrastructure stacks with state and configuration
+        call: spacelift.list-stacks
+        outputParameters:
+        - type: object
+          mapping: $.data.stacks
+      - method: POST
+        name: create-stack
+        description: Create a new infrastructure stack
+        call: spacelift.create-stack
+        with:
+          input: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.data.stackCreate
+    - path: /v1/runs
+      name: runs
+      description: Infrastructure deployment runs
+      operations:
+      - method: POST
+        name: create-run
+        description: Trigger a new deployment run on a stack
+        call: spacelift.create-run
+        with:
+          stack: rest.stack
+          message: rest.message
+        outputParameters:
+        - type: object
+          mapping: $.data.runCreate
+    - path: /v1/policies
+      name: policies
+      description: Governance policies (OPA/Rego)
+      operations:
+      - method: GET
+        name: list-policies
+        description: List all governance policies in the account
+        call: spacelift.list-policies
+        outputParameters:
+        - type: object
+          mapping: $.data.policies
+    - path: /v1/contexts
+      name: contexts
+      description: Shared environment variable contexts
+      operations:
+      - method: GET
+        name: list-contexts
+        description: List all shared contexts available for stack attachment
+        call: spacelift.list-contexts
+        outputParameters:
+        - type: object
+          mapping: $.data.contexts
+    - path: /v1/worker-pools
+      name: worker-pools
+      description: Worker pools for running infrastructure jobs
+      operations:
+      - method: GET
+        name: list-worker-pools
+        description: List all worker pools and their current worker status
+        call: spacelift.list-worker-pools
+        outputParameters:
+        - type: object
+          mapping: $.data.workerPools
+  - type: mcp
+    port: 9090
+    namespace: spacelift-orchestration-mcp
+    transport: http
+    description: MCP server for AI-assisted infrastructure orchestration via Spacelift.
+    tools:
+    - name: list-stacks
+      description: List all Spacelift infrastructure stacks with their current state, repository, and deployment configuration
+      hints:
+        readOnly: true
+      call: spacelift.list-stacks
+      outputParameters:
+      - type: object
+        mapping: $.data.stacks
+    - name: create-stack
+      description: Create a new infrastructure stack in Spacelift connected to a source repository
+      hints:
+        readOnly: false
+      call: spacelift.create-stack
+      with:
+        input: tools.input
+      outputParameters:
+      - type: object
+        mapping: $.data.stackCreate
+    - name: trigger-run
+      description: Trigger a new infrastructure deployment run on a Spacelift stack
+      hints:
+        readOnly: false
+      call: spacelift.create-run
+      with:
+        stack: tools.stack
+        message: tools.message
+      outputParameters:
+      - type: object
+        mapping: $.data.runCreate
+    - name: list-policies
+      description: List all governance policies (OPA/Rego) enforcing infrastructure deployment rules
+      hints:
+        readOnly: true
+      call: spacelift.list-policies
+      outputParameters:
+      - type: object
+        mapping: $.data.policies
+    - name: list-contexts
+      description: List all shared contexts containing environment variables and files for stacks
+      hints:
+        readOnly: true
+      call: spacelift.list-contexts
+      outputParameters:
+      - type: object
+        mapping: $.data.contexts
+    - name: list-worker-pools
+      description: List all worker pools and their worker health status
+      hints:
+        readOnly: true
+      call: spacelift.list-worker-pools
+      outputParameters:
+      - type: object
+        mapping: $.data.workerPools
