@@ -3,11 +3,11 @@
   "feeds": [
     {
       "source": "https://spacelift.io/blog",
-      "feed_url": "https://spacelift.io/rss",
-      "saved": 10,
-      "title": "Managing Infrastructure at Scale | Spacelift Blog"
+      "feed_url": "https://spacelift.io/rss/",
+      "title": "Managing Infrastructure at Scale | Spacelift Blog",
+      "saved": 2
     }
   ],
-  "post_count": 10,
-  "fetched": "2026-05-03T23:36:52Z"
+  "post_count": 12,
+  "fetched": "2026-05-09T20:17:51Z"
 }
