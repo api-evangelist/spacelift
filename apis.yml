@@ -68,6 +68,31 @@ common:
     url: https://spacelift.io/blog
   - type: Changelog
     url: https://spacelift.io/changelog
+  - type: Integrations
+    url: https://spacelift.io/platform/integrations
+integrations:
+  - name: spacelift launchpad learn
+  - name: the bald truth
+  - name: terraform
+  - name: pulumi
+  - name: Cloud formation
+  - name: kubernetes
+  - name: Ansible
+  - name: AWS CDK
+  - name: serverless
+  - name: terragrunt
+  - name: Bitbucket
+  - name: Github
+  - name: GitLab
+  - name: Azure
+  - name: Slack
+  - name: Microsoft Teams
+  - name: Docker
+  - name: GraphQL API
+  - name: Audit trial
+  - name: Saml
+  - name: Datadog
+  - name: infracost
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
