@@ -41,7 +41,7 @@ apis:
         url: https://docs.spacelift.io/
       - type: GraphQL
         url: https://docs.spacelift.io/integrations/api
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.spacelift.io/
       - type: GitHubRepository
         url: https://github.com/spacelift-io/spacectl
@@ -66,7 +66,7 @@ common:
     url: https://spacelift.io/pricing
   - type: Blog
     url: https://spacelift.io/blog
-  - type: Changelog
+  - type: ChangeLog
     url: https://spacelift.io/changelog
   - type: Integrations
     url: https://spacelift.io/platform/integrations
