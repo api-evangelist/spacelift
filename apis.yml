@@ -54,6 +54,8 @@ apis:
       - type: Vocabulary
         url: https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/vocabulary/spacelift-vocabulary.yml
 common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/spacelift-io
   - type: Website
     url: https://spacelift.io/
   - type: Documentation
