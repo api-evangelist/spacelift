@@ -1,0 +1,159 @@
+openapi: 3.1.0
+info:
+  title: Spacelift GraphQL API
+  description: |
+    Spacelift exposes a single GraphQL endpoint for programmatic control of all
+    platform resources including stacks, runs, policies, contexts, worker pools,
+    modules, and blueprints. Authentication uses JWT bearer tokens obtained by
+    exchanging a Spacelift API key ID and secret via the `apiKeyUser` GraphQL
+    mutation, by exchanging a GitHub Personal Access Token via the `oauthUser`
+    mutation, or by running `spacectl profile export-token` from the SpaceCTL CLI.
+
+    This OpenAPI description models the GraphQL endpoint as an HTTP POST resource
+    accepting `application/json` bodies of the form
+    `{ "query": "...", "variables": { ... } }`. Only endpoints and authentication
+    flows explicitly documented at https://docs.spacelift.io/integrations/api are
+    described here; the GraphQL schema itself is discoverable via standard
+    GraphQL introspection against the live endpoint.
+  version: "1.0.0"
+  contact:
+    name: Spacelift
+    url: https://docs.spacelift.io/integrations/api
+  license:
+    name: Proprietary
+servers:
+  - url: https://{account}.app.spacelift.io
+    description: Account-specific Spacelift GraphQL endpoint
+    variables:
+      account:
+        default: example
+        description: Your Spacelift account subdomain
+security:
+  - bearerAuth: []
+tags:
+  - name: GraphQL
+    description: Spacelift GraphQL endpoint
+paths:
+  /graphql:
+    post:
+      tags:
+        - GraphQL
+      summary: Execute a GraphQL query or mutation
+      description: |
+        Executes a GraphQL query or mutation against the Spacelift API. The
+        request body is a standard GraphQL-over-HTTP envelope containing a
+        `query` string and an optional `variables` object. Requests must
+        include a JWT bearer token in the `Authorization` header except for
+        the authentication mutations (`apiKeyUser`, `oauthUser`) which
+        return the JWT.
+      operationId: executeGraphQL
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/GraphQLRequest'
+            examples:
+              listStacks:
+                summary: List stacks
+                value:
+                  query: |
+                    {
+                      stacks {
+                        id
+                        name
+                        createdAt
+                        description
+                      }
+                    }
+              apiKeyLogin:
+                summary: Exchange API key for JWT
+                value:
+                  query: |
+                    mutation GetSpaceliftToken($id: ID!, $secret: String!) {
+                      apiKeyUser(id: $id, secret: $secret) {
+                        jwt
+                      }
+                    }
+                  variables:
+                    id: api-key-id
+                    secret: api-key-secret
+              githubLogin:
+                summary: Exchange GitHub PAT for JWT
+                value:
+                  query: |
+                    mutation GetSpaceliftToken($token: String!) {
+                      oauthUser(token: $token) {
+                        jwt
+                      }
+                    }
+                  variables:
+                    token: ghp_xxx
+      responses:
+        '200':
+          description: GraphQL response (may contain `data` and/or `errors`)
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GraphQLResponse'
+        '401':
+          description: Missing or invalid bearer token
+        '400':
+          description: Malformed GraphQL request
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: |
+        JWT bearer token obtained from the `apiKeyUser` or `oauthUser`
+        mutation, or via `spacectl profile export-token`.
+  schemas:
+    GraphQLRequest:
+      type: object
+      required:
+        - query
+      properties:
+        query:
+          type: string
+          description: GraphQL query or mutation document
+        variables:
+          type: object
+          additionalProperties: true
+          description: Variables referenced by the query
+        operationName:
+          type: string
+          description: Name of the operation to execute when the document defines multiple
+    GraphQLResponse:
+      type: object
+      properties:
+        data:
+          type: object
+          additionalProperties: true
+          nullable: true
+        errors:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+              path:
+                type: array
+                items:
+                  oneOf:
+                    - type: string
+                    - type: integer
+              locations:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    line:
+                      type: integer
+                    column:
+                      type: integer
+        extensions:
+          type: object
+          additionalProperties: true
