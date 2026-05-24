@@ -72,6 +72,8 @@ common:
     url: https://spacelift.io/changelog
   - type: Integrations
     url: https://spacelift.io/platform/integrations
+  - type: LLMsTxt
+    url: https://docs.spacelift.io/llms.txt
 integrations:
   - name: spacelift launchpad learn
   - name: the bald truth
