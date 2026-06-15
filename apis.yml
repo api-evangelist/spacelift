@@ -9,94 +9,96 @@ description: >-
 type: Index
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - Infrastructure as Code
-  - FinOps
-  - DevOps
-  - Platform Engineering
-  - Terraform
-  - GitOps
+- Infrastructure as Code
+- FinOps
+- DevOps
+- Platform Engineering
+- Terraform
+- GitOps
 url: https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/apis.yml
 created: '2026-03-27'
 modified: '2026-05-02'
 specificationVersion: '0.19'
 apis:
-  - aid: spacelift:spacelift-graphql
-    name: Spacelift GraphQL API
-    description: >-
-      Spacelift exposes a GraphQL API for programmatic control of all platform resources
-      including stacks, runs, policies, contexts, worker pools, modules, and blueprints.
-      Authentication uses JWT tokens obtained by exchanging a Spacelift API key ID and secret
-      via the apiKeyUser mutation. The endpoint is account-specific at
-      https://{account}.app.spacelift.io/graphql.
-    humanURL: https://spacelift.io/
-    baseURL: https://{account}.app.spacelift.io/graphql
-    tags:
-      - Infrastructure as Code
-      - DevOps
-      - Platform Engineering
-      - Terraform
-      - GraphQL
-    properties:
-      - type: Documentation
-        url: https://docs.spacelift.io/
-      - type: GraphQL
-        url: https://docs.spacelift.io/integrations/api
-      - type: GettingStarted
-        url: https://docs.spacelift.io/
-      - type: GitHubRepository
-        url: https://github.com/spacelift-io/spacectl
-      - type: JSONSchema
-        url: https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/json-schema/spacelift-stack-schema.json
-      - type: JSONStructure
-        url: https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/json-structure/spacelift-stack-structure.json
-      - type: JSONLDContext
-        url: https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/json-ld/spacelift-context.jsonld
-      - type: Vocabulary
-        url: https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/vocabulary/spacelift-vocabulary.yml
-common:
-  - type: LinkedIn
-    url: https://www.linkedin.com/company/spacelift-io
-  - type: Website
-    url: https://spacelift.io/
+- aid: spacelift:spacelift-graphql
+  name: Spacelift GraphQL API
+  description: >-
+    Spacelift exposes a GraphQL API for programmatic control of all platform resources
+    including stacks, runs, policies, contexts, worker pools, modules, and blueprints.
+    Authentication uses JWT tokens obtained by exchanging a Spacelift API key ID and secret
+    via the apiKeyUser mutation. The endpoint is account-specific at
+    https://{account}.app.spacelift.io/graphql.
+  humanURL: https://spacelift.io/
+  baseURL: https://{account}.app.spacelift.io/graphql
+  tags:
+  - Infrastructure as Code
+  - DevOps
+  - Platform Engineering
+  - Terraform
+  - GraphQL
+  properties:
   - type: Documentation
     url: https://docs.spacelift.io/
   - type: GraphQL
     url: https://docs.spacelift.io/integrations/api
-  - type: GitHub
-    url: https://github.com/spacelift-io
-  - type: Pricing
-    url: https://spacelift.io/pricing
-  - type: Blog
-    url: https://spacelift.io/blog
-  - type: ChangeLog
-    url: https://spacelift.io/changelog
-  - type: Integrations
-    url: https://spacelift.io/platform/integrations
-  - type: LLMsTxt
-    url: https://docs.spacelift.io/llms.txt
+  - type: GettingStarted
+    url: https://docs.spacelift.io/
+  - type: GitHubRepository
+    url: https://github.com/spacelift-io/spacectl
+  - type: JSONSchema
+    url: https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/json-schema/spacelift-stack-schema.json
+  - type: JSONStructure
+    url: https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/json-structure/spacelift-stack-structure.json
+  - type: JSONLDContext
+    url: https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/json-ld/spacelift-context.jsonld
+  - type: Vocabulary
+    url: https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/vocabulary/spacelift-vocabulary.yml
+  - url: graphql/spacelift-graphql.md
+    type: GraphQL
+common:
+- type: LinkedIn
+  url: https://www.linkedin.com/company/spacelift-io
+- type: Website
+  url: https://spacelift.io/
+- type: Documentation
+  url: https://docs.spacelift.io/
+- type: GraphQL
+  url: https://docs.spacelift.io/integrations/api
+- type: GitHub
+  url: https://github.com/spacelift-io
+- type: Pricing
+  url: https://spacelift.io/pricing
+- type: Blog
+  url: https://spacelift.io/blog
+- type: ChangeLog
+  url: https://spacelift.io/changelog
+- type: Integrations
+  url: https://spacelift.io/platform/integrations
+- type: LLMsTxt
+  url: https://docs.spacelift.io/llms.txt
 integrations:
-  - name: spacelift launchpad learn
-  - name: the bald truth
-  - name: terraform
-  - name: pulumi
-  - name: Cloud formation
-  - name: kubernetes
-  - name: Ansible
-  - name: AWS CDK
-  - name: serverless
-  - name: terragrunt
-  - name: Bitbucket
-  - name: Github
-  - name: GitLab
-  - name: Azure
-  - name: Slack
-  - name: Microsoft Teams
-  - name: Docker
-  - name: GraphQL API
-  - name: Audit trial
-  - name: Saml
-  - name: Datadog
-  - name: infracost
+- name: spacelift launchpad learn
+- name: the bald truth
+- name: terraform
+- name: pulumi
+- name: Cloud formation
+- name: kubernetes
+- name: Ansible
+- name: AWS CDK
+- name: serverless
+- name: terragrunt
+- name: Bitbucket
+- name: Github
+- name: GitLab
+- name: Azure
+- name: Slack
+- name: Microsoft Teams
+- name: Docker
+- name: GraphQL API
+- name: Audit trial
+- name: Saml
+- name: Datadog
+- name: infracost
 maintainers:
-  - FN: Kin Lane
-    email: kin@apievangelist.com
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,271 @@
+{
+  "item": [
+    {
+      "id": "2840efb0-9990-4fef-8e6e-13ef972c0088",
+      "name": "GraphQL",
+      "description": {
+        "content": "Spacelift GraphQL endpoint",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fb8a02b1-76ac-40a5-a0c0-09aa2ecaef47",
+          "name": "Execute a GraphQL query or mutation",
+          "request": {
+            "name": "Execute a GraphQL query or mutation",
+            "description": {
+              "content": "Executes a GraphQL query or mutation against the Spacelift API. The\nrequest body is a standard GraphQL-over-HTTP envelope containing a\n`query` string and an optional `variables` object. Requests must\ninclude a JWT bearer token in the `Authorization` header except for\nthe authentication mutations (`apiKeyUser`, `oauthUser`) which\nreturn the JWT.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "graphql"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your Spacelift account subdomain",
+                  "type": "any",
+                  "value": "{{account}}",
+                  "key": "account"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"key_0\": 3904,\n    \"key_1\": true,\n    \"key_2\": 8908.212736306676\n  },\n  \"operationName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7781b460-c330-42f3-81c9-7a0c87aa74ee",
+              "name": "GraphQL response (may contain `data` and/or `errors`)",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Spacelift account subdomain",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"{\\n  stacks {\\n    id\\n    name\\n    createdAt\\n    description\\n  }\\n}\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": {\n    \"key_0\": \"string\"\n  },\n  \"errors\": [\n    {\n      \"message\": \"string\",\n      \"path\": [\n        \"string\",\n        \"string\"\n      ],\n      \"locations\": [\n        {\n          \"line\": 793,\n          \"column\": 7406\n        },\n        {\n          \"line\": 3654,\n          \"column\": 1646\n        }\n      ]\n    },\n    {\n      \"message\": \"string\",\n      \"path\": [\n        \"string\",\n        \"string\"\n      ],\n      \"locations\": [\n        {\n          \"line\": 6843,\n          \"column\": 8151\n        },\n        {\n          \"line\": 3066,\n          \"column\": 6745\n        }\n      ]\n    }\n  ],\n  \"extensions\": {\n    \"key_0\": 8104.081344245045\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cc42fe68-b635-40c1-b170-0057e2c7b4fd",
+              "name": "Malformed GraphQL request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Spacelift account subdomain",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"{\\n  stacks {\\n    id\\n    name\\n    createdAt\\n    description\\n  }\\n}\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "a41b1d1a-dcff-442e-ab16-528a010121b5",
+              "name": "Missing or invalid bearer token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "graphql"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your Spacelift account subdomain",
+                      "type": "any",
+                      "value": "{{account}}",
+                      "key": "account"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"{\\n  stacks {\\n    id\\n    name\\n    createdAt\\n    description\\n  }\\n}\\n\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your Spacelift account subdomain",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "example",
+      "key": "account"
+    },
+    {
+      "type": "string",
+      "value": "https://{{account}}.app.spacelift.io",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b3b986a2-fa1d-4311-b79c-094f8b6a8676",
+    "name": "Spacelift GraphQL API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Spacelift exposes a single GraphQL endpoint for programmatic control of all\nplatform resources including stacks, runs, policies, contexts, worker pools,\nmodules, and blueprints. Authentication uses JWT bearer tokens obtained by\nexchanging a Spacelift API key ID and secret via the `apiKeyUser` GraphQL\nmutation, by exchanging a GitHub Personal Access Token via the `oauthUser`\nmutation, or by running `spacectl profile export-token` from the SpaceCTL CLI.\n\nThis OpenAPI description models the GraphQL endpoint as an HTTP POST resource\naccepting `application/json` bodies of the form\n`{ \"query\": \"...\", \"variables\": { ... } }`. Only endpoints and authentication\nflows explicitly documented at https://docs.spacelift.io/integrations/api are\ndescribed here; the GraphQL schema itself is discoverable via standard\nGraphQL introspection against the live endpoint.\n\n\nContact Support:\n Name: Spacelift",
+      "type": "text/plain"
+    }
+  }
+}

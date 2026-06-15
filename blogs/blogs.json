@@ -2,17 +2,20 @@
   "repo": "spacelift",
   "feeds": [
     {
-      "source": "https://spacelift.io/rss/",
-      "error": "HTTPError"
+      "source": "https://spacelift.io/rss",
+      "feed_url": "https://spacelift.io/rss",
+      "title": "",
+      "saved": 2,
+      "method": "feed"
     },
     {
       "source": "https://spacelift.io/pricing",
       "feed_url": "https://spacelift.io/rss",
       "title": "",
-      "saved": 3,
+      "saved": 0,
       "method": "discovered"
     }
   ],
-  "post_count": 17,
-  "fetched": "2026-06-01T23:35:02Z"
+  "post_count": 21,
+  "fetched": "2026-06-14T20:42:17Z"
 }
