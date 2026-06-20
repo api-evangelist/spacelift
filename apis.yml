@@ -7,7 +7,7 @@ description: >-
   include drift detection, OPA-based policies, self-service blueprints, dynamic credentials,
   and multi-tenancy. Available as fully managed SaaS and FedRAMP-authorized self-hosted.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
 - Infrastructure as Code
 - FinOps
