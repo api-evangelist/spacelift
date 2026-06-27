@@ -74,7 +74,7 @@ common:
   url: https://spacelift.io/changelog
 - type: Integrations
   url: https://spacelift.io/platform/integrations
-- type: LLMsTxt
+- type: LlmsText
   url: https://docs.spacelift.io/llms.txt
 integrations:
 - name: spacelift launchpad learn
