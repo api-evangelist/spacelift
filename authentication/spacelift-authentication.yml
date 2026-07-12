@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/spacelift-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: |-
+    JWT bearer token obtained from the `apiKeyUser` or `oauthUser`
+    mutation, or via `spacectl profile export-token`.
+  sources:
+  - openapi/spacelift-openapi.yml

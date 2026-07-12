@@ -56,6 +56,14 @@ apis:
   - url: graphql/spacelift-graphql.md
     type: GraphQL
 common:
+- type: TrustCenter
+  url: security/spacelift-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/spacelift-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/spacelift-domain-security.yml
+- type: Authentication
+  url: authentication/spacelift-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/spacelift-io
 - type: Website

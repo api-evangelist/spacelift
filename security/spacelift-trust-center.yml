@@ -1,0 +1,14 @@
+generated: '2026-07-11'
+method: searched
+probe: true
+source: https://spacelift.io/security
+url: https://spacelift.io/security
+certifications:
+- SOC 2
+- FedRAMP
+evidence:
+- source: https://spacelift.io/security
+  keywords:
+  - soc2
+  - fedramp
+  - trust center
