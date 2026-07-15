@@ -56,6 +56,8 @@ apis:
   - url: graphql/spacelift-graphql.md
     type: GraphQL
 common:
+- type: AgenticAccess
+  url: agentic-access/spacelift-agentic-access.yml
 - type: TrustCenter
   url: security/spacelift-trust-center.yml
 - type: VulnerabilityDisclosure
