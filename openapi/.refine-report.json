@@ -1,0 +1,14 @@
+{
+  "provider": "spacelift",
+  "sources": [
+    "spacelift-graphql-api-openapi.yml"
+  ],
+  "outputs": [
+    "spacelift-graphql-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,238 @@
+{
+  "info": {
+    "_postman_id": "e46fba6c-316a-47a7-b892-c728faffd6a9",
+    "name": "Spacelift GraphQL API",
+    "description": "Spacelift exposes a single GraphQL endpoint for programmatic control of all\nplatform resources including stacks, runs, policies, contexts, worker pools,\nmodules, and blueprints. Authentication uses JWT bearer tokens obtained by\nexchanging a Spacelift API key ID and secret via the `apiKeyUser` GraphQL\nmutation, by exchanging a GitHub Personal Access Token via the `oauthUser`\nmutation, or by running `spacectl profile export-token` from the SpaceCTL CLI.\n\nThis OpenAPI description models the GraphQL endpoint as an HTTP POST resource\naccepting `application/json` bodies of the form\n`{ \"query\": \"...\", \"variables\": { ... } }`. Only endpoints and authentication\nflows explicitly documented at https://docs.spacelift.io/integrations/api are\ndescribed here; the GraphQL schema itself is discoverable via standard\nGraphQL introspection against the live endpoint.\n\n\nContact Support:\n Name: Spacelift",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:59:30.000Z",
+    "updatedAt": "2026-07-28T02:59:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-e46fba6c-316a-47a7-b892-c728faffd6a9"
+  },
+  "item": [
+    {
+      "name": "graphql",
+      "item": [
+        {
+          "name": "Execute a GraphQL query or mutation",
+          "id": "91e7bb95-fb0e-4996-8234-0b874c7a168e",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"nulla_2f\": \"pariatur mollit\",\n    \"commodof9\": -61987410.23068144,\n    \"ullamco_b22\": \"dolor sit Ut\"\n  },\n  \"operationName\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "headerFamily": "json",
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/graphql",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "graphql"
+              ]
+            },
+            "description": "Executes a GraphQL query or mutation against the Spacelift API. The\nrequest body is a standard GraphQL-over-HTTP envelope containing a\n`query` string and an optional `variables` object. Requests must\ninclude a JWT bearer token in the `Authorization` header except for\nthe authentication mutations (`apiKeyUser`, `oauthUser`) which\nreturn the JWT.\n"
+          },
+          "response": [
+            {
+              "id": "90fbb105-bbc3-4a4a-9564-f3e0337ae452",
+              "name": "GraphQL response (may contain `data` and/or `errors`)",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"nulla_2f\": \"pariatur mollit\",\n    \"commodof9\": -61987410.23068144,\n    \"ullamco_b22\": \"dolor sit Ut\"\n  },\n  \"operationName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/graphql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphql"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"data\": {\n    \"animd\": \"reprehenderit dolore\"\n  },\n  \"errors\": [\n    {\n      \"message\": \"<string>\",\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"locations\": [\n        {\n          \"line\": \"<integer>\",\n          \"column\": \"<integer>\"\n        },\n        {\n          \"line\": \"<integer>\",\n          \"column\": \"<integer>\"\n        }\n      ]\n    },\n    {\n      \"message\": \"<string>\",\n      \"path\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"locations\": [\n        {\n          \"line\": \"<integer>\",\n          \"column\": \"<integer>\"\n        },\n        {\n          \"line\": \"<integer>\",\n          \"column\": \"<integer>\"\n        }\n      ]\n    }\n  ],\n  \"extensions\": {\n    \"occaecat_3\": \"labore aliquip in nostr\"\n  }\n}",
+              "createdAt": "2026-07-28T02:59:30.000Z",
+              "updatedAt": "2026-07-28T02:59:30.000Z",
+              "uid": "35240-90fbb105-bbc3-4a4a-9564-f3e0337ae452"
+            },
+            {
+              "id": "fa644c9b-2e64-4e08-871f-97dec1fe53a3",
+              "name": "Malformed GraphQL request",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"nulla_2f\": \"pariatur mollit\",\n    \"commodof9\": -61987410.23068144,\n    \"ullamco_b22\": \"dolor sit Ut\"\n  },\n  \"operationName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/graphql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphql"
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:59:30.000Z",
+              "updatedAt": "2026-07-28T02:59:30.000Z",
+              "uid": "35240-fa644c9b-2e64-4e08-871f-97dec1fe53a3"
+            },
+            {
+              "id": "6d35a044-c9e4-4201-bcd7-9d1b4bdddc8e",
+              "name": "Missing or invalid bearer token",
+              "originalRequest": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: bearer",
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"query\": \"<string>\",\n  \"variables\": {\n    \"nulla_2f\": \"pariatur mollit\",\n    \"commodof9\": -61987410.23068144,\n    \"ullamco_b22\": \"dolor sit Ut\"\n  },\n  \"operationName\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/graphql",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "graphql"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "text",
+              "header": [],
+              "cookie": [],
+              "responseTime": null,
+              "body": null,
+              "createdAt": "2026-07-28T02:59:30.000Z",
+              "updatedAt": "2026-07-28T02:59:30.000Z",
+              "uid": "35240-6d35a044-c9e4-4201-bcd7-9d1b4bdddc8e"
+            }
+          ],
+          "createdAt": "2026-07-28T02:59:30.000Z",
+          "updatedAt": "2026-07-28T02:59:30.000Z",
+          "uid": "35240-91e7bb95-fb0e-4996-8234-0b874c7a168e"
+        }
+      ],
+      "id": "38f74468-6019-454a-84ab-c22b3c97770e",
+      "createdAt": "2026-07-28T02:59:30.000Z",
+      "updatedAt": "2026-07-28T02:59:30.000Z",
+      "uid": "35240-38f74468-6019-454a-84ab-c22b3c97770e"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "account",
+      "value": "example"
+    },
+    {
+      "key": "baseUrl",
+      "value": "https://{{account}}.app.spacelift.io"
+    }
+  ]
+}
