@@ -1,0 +1,39 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Spacelift GraphQL API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GraphQL",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Execute a GraphQL query or mutation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{account}.app.spacelift.io/graphql",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Executes a GraphQL query or mutation against the Spacelift API. The\nrequest body is a standard GraphQL-over-HTTP envelope containing a\n`query` string and an optional `variables` object. Requests must\ninclude a JWT bearer token in the `Authorization` header except for\nthe authentication mutations (`apiKeyUser`, `oauthUser`) which\nreturn the JWT.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
