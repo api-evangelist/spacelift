@@ -86,16 +86,16 @@ apis:
       https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/vocabulary/spacelift-vocabulary.yml
   - url: graphql/spacelift-graphql.md
     type: GraphQL
-- aid: spacelift:spacelift-graphql-api
-  name: Spacelift GraphQL API
+- aid: spacelift:spacelift-graph-ql-api
+  name: Spacelift Graph QL API
   description: Spacelift GraphQL endpoint
   humanURL: https://spacelift.io/
   baseURL: https://{account}.app.spacelift.io/graphql
   tags:
-  - GraphQL
+  - Graph QL
   properties:
   - type: OpenAPI
-    url: openapi/spacelift-graphql-api-openapi.yml
+    url: openapi/spacelift-graph-ql-api-openapi.yml
 common:
 - type: IssueTracker
   url: https://github.com/spacelift-io/spacectl/issues
