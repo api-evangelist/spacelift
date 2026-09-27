@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Spacelift Graph QL API
+  title: Spacelift GraphQL API
   description: 'Spacelift exposes a single GraphQL endpoint for programmatic control of all
 
     platform resources including stacks, runs, policies, contexts, worker pools,
