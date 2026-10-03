@@ -79,21 +79,6 @@ paths:
           description: Malformed GraphQL request
 components:
   schemas:
-    GraphQLRequest:
-      type: object
-      required:
-      - query
-      properties:
-        query:
-          type: string
-          description: GraphQL query or mutation document
-        variables:
-          type: object
-          additionalProperties: true
-          description: Variables referenced by the query
-        operationName:
-          type: string
-          description: Name of the operation to execute when the document defines multiple
     GraphQLResponse:
       type: object
       properties:
@@ -126,6 +111,21 @@ components:
         extensions:
           type: object
           additionalProperties: true
+    GraphQLRequest:
+      type: object
+      required:
+      - query
+      properties:
+        query:
+          type: string
+          description: GraphQL query or mutation document
+        variables:
+          type: object
+          additionalProperties: true
+          description: Variables referenced by the query
+        operationName:
+          type: string
+          description: Name of the operation to execute when the document defines multiple
   securitySchemes:
     bearerAuth:
       type: http
