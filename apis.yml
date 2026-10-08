@@ -97,6 +97,12 @@ apis:
   - type: OpenAPI
     url: openapi/spacelift-graph-ql-api-openapi.yml
 common:
+- type: Plans
+  url: plans/spacelift-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/spacelift-rate-limits.yml
+- type: FinOps
+  url: finops/spacelift-finops.yml
 - type: IssueTracker
   url: https://github.com/spacelift-io/spacectl/issues
 - type: Releases
