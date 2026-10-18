@@ -92,6 +92,8 @@ apis:
   humanURL: https://spacelift.io/
   baseURL: https://{account}.app.spacelift.io/graphql
   tags:
+  - GraphQL
+  tags_raw:
   - Graph QL
   properties:
   - type: OpenAPI
