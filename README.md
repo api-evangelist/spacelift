@@ -1,4 +1,4 @@
-# Spacelift (spacelift)
+# Spacelift
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,70 +66,165 @@
 
 Spacelift is an infrastructure-as-code (IaC) orchestration platform that combines AI-assisted deployments, GitOps pipelines, and policy-as-code governance. It supports Terraform, OpenTofu, Pulumi, CloudFormation, Kubernetes, and Ansible. Key features include drift detection, OPA-based policies, self-service blueprints, dynamic credentials, and multi-tenancy. Available as fully managed SaaS and FedRAMP-authorized self-hosted.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/apis.yml)
+**Areas:** Infrastructure as Code · FinOps · DevOps · Platform Engineering · Terraform · GitOps
 
-## Scope
+## Spacelift on APIs.io
 
-- **Type:** Index
+Everything profiled for Spacelift is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/spacelift/](https://apis.io/providers/spacelift/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (2)
 
-- Infrastructure as Code
-- FinOps
-- DevOps
-- Platform Engineering
-- Terraform
-- GitOps
+- [Spacelift GraphQL API](https://apis.io/apis/spacelift/spacelift-graphql/) — Spacelift exposes a GraphQL API for programmatic control of all platform resources including stacks, runs, policies, contexts, worker pools, modules, and…
+- [Spacelift Graph QL API](https://apis.io/apis/spacelift/spacelift-graph-ql-api/) — Spacelift GraphQL endpoint
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-03-27
-- **Modified:** 2026-05-02
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### GraphQL (1)
 
-### Spacelift GraphQL API
+GraphQL schemas.
 
-Spacelift exposes a GraphQL API for programmatic control of all platform resources including stacks, runs, policies, contexts, worker pools, modules, and blueprints. Authentication uses JWT tokens obtained by exchanging a Spacelift API key ID and secret via the apiKeyUser mutation. The endpoint is account-specific at https://{account}.app.spacelift.io/graphql.
+- [Spacelift GraphQL API](https://apis.io/graphqls/spacelift/spacelift-graphql/)
 
-- **Human URL:** [https://spacelift.io/](https://spacelift.io/)
-- **Base URL:** `https://{account}.app.spacelift.io/graphql`
+#### Agentic access (1)
 
-#### Tags
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- Infrastructure as Code
-- DevOps
-- Platform Engineering
-- Terraform
-- GraphQL
+- [Spacelift Agentic Access](https://apis.io/agentic-access/spacelift/spacelift-agentic-access/)
 
-#### Properties
+#### JSON Schema (1)
 
-- [Documentation](https://docs.spacelift.io/)
-- [Graph Q L](https://docs.spacelift.io/integrations/api)
-- [Getting Started](https://docs.spacelift.io/)
-- [GitHub Repository](https://github.com/spacelift-io/spacectl)
-- [JSON Schema](https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/json-schema/spacelift-stack-schema.json) — [JSON Schema](https://json-schema.org/specification)
-- [JSON Structure](https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/json-structure/spacelift-stack-structure.json)
-- [J S O N L D Context](https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/json-ld/spacelift-context.jsonld)
-- [Vocabulary](https://raw.githubusercontent.com/api-evangelist/spacelift/refs/heads/main/vocabulary/spacelift-vocabulary.yml)
-- [Postman Collection](collections/spacelift.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/spacelift.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
+The data models the API reads and writes.
 
-## Common Properties
+- [Spacelift Stack](https://apis.io/schemas/spacelift/spacelift-stack/)
 
-- [LinkedIn](https://www.linkedin.com/company/spacelift-io)
+#### JSON Structure (1)
+
+Data models expressed in JSON Structure.
+
+- [Spacelift Stack Structure](https://apis.io/json-structure/spacelift/spacelift-stack-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Spacelift Context](https://apis.io/jsonld/spacelift/spacelift-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Spacelift Vocabulary](https://apis.io/vocabularies/spacelift/spacelift-vocabulary/)
+
+#### Examples (1)
+
+Example requests and responses.
+
+- [Spacelift Stack Example](https://apis.io/examples/spacelift/spacelift-stack-example/)
+
+#### Collections (3)
+
+Postman and Open Collection request collections.
+
+- [Spacelift GraphQL API](https://apis.io/collections/spacelift/open-spacelift/)
+- [Spacelift GraphQL API](https://apis.io/collections/spacelift/open-spacelift-graphql-api/)
+- [Spacelift GraphQL API](https://apis.io/collections/spacelift/postman-spacelift-graphql-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Spacelift — jsonschema rules](https://apis.io/rules/spacelift/spacelift-jsonschema-spectral-rules/)
+
+#### Security (4)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Spacelift Authentication](https://apis.io/security/spacelift/spacelift-authentication/)
+- [Spacelift Domain Security](https://apis.io/security/spacelift/spacelift-domain-security/)
+- [Spacelift Trust Center](https://apis.io/security/spacelift/spacelift-trust-center/)
+- [Spacelift Vulnerability Disclosure](https://apis.io/security/spacelift/spacelift-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Spacelift Plans Pricing](https://apis.io/plans/spacelift/spacelift-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Spacelift Rate Limits](https://apis.io/rate-limits/spacelift/spacelift-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Spacelift Finops](https://apis.io/finops/spacelift/spacelift-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://spacelift.io/)
 - [Documentation](https://docs.spacelift.io/)
-- [Graph Q L](https://docs.spacelift.io/integrations/api)
-- [Git Hub](https://github.com/spacelift-io)
 - [Pricing](https://spacelift.io/pricing)
-- [Blog](https://spacelift.io/blog)
 - [Changelog](https://spacelift.io/changelog)
-- [Integrations](https://spacelift.io/platform/integrations)
-- [L L Ms Txt](https://docs.spacelift.io/llms.txt)
+- [Blog](https://spacelift.io/blog)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 44.1** — developing · rubric 0.25.0 · scored 2026-10-23
+
+| Facet | Score |
+|---|---|
+| Discoverability | 73.2 |
+| Contract quality | 65.0 |
+| Contract governance | 23.5 |
+| Operational transparency | 23.7 |
+| Developer ergonomics | 36.9 |
+| Access clarity | 26.3 |
+
+**Agent readiness 22.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | na |
+| Operation Distinctiveness | na |
+
+**Regulatory alignment 27.5** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/spacelift/](https://apis.io/providers/spacelift/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Spacelift: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/spacelift/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
